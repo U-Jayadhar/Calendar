@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Scope+One&display=swap');
+
+.back-color{
+  background-color: #444444;
+  font-family: Scope One;
+  color: #f0f8ff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
