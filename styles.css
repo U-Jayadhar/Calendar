@@ -1,28 +1,80 @@
-@import url('https://fonts.googleapis.com/css2?family=Scope+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Scope+One&display=swap");
 
-.back-color{
-  background-color: #444444;
+body {
+  background-color: #323232;
   font-family: Scope One;
   color: #f0f8ff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  place-items: center;
+  margin: 0;
   height: 100vh;
 }
-.out-box{
-  border-style: solid;
+
+.out-box {
+  background-color: #2e2e2e;
+  overflow: hidden;
   border-radius: 10px;
-  border-color: #f0f8ff;
-  height: 500px;
-  width: 500px;
-  padding: 30px;
+  box-shadow: 0 0 12px #f0f8ff;
+  width: 400px;
+  padding: 20px;
 }
-.svg-icon{
-  height: 40px;
-}
-.orient{
+
+.arrs {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px;
+}
+
+.svg-icon {
+  height: 40px;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+#monthYear {
+  font-size: 20px;
+  font-weight: 800;
+  color: #ecc37a;
+}
+
+.weeks,
+.caldays {
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: 600;
+}
+
+.caldays {
+  height: fit-content;
+}
+
+.weeks div,
+.caldays div {
+  width: 11.78%;
+  height: 40px;
+  text-align: center;
+  place-content: center;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.caldays div {
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.caldays div:hover {
+  background-color: #f0f8ff;
+  color: #4564ff;
+}
+
+.caldays .today {
+  background-color: #4564ff;
+  color: #f0f8ff;
+}
+.caldays .dim {
+  color: #717171;
 }

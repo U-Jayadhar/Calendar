@@ -6,24 +6,30 @@
     <title>Calendar</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="back-color">
-    <h1>Calendar</h1>
+  <body>
+    <!-- <h1>Calendar</h1> -->
     <div class="out-box">
-      <div class="orient">
-        <img src="assets/arr-left.svg" class="svg-icon" />
-        <p class="month">January</p>
-        <p class="year">2025</p>
-        <img src="assets/arr-right.svg" class="svg-icon" />
+      <div class="arrs">
+        <div id="left" class="btn">
+          <img src="assets/arr-left.svg" class="svg-icon" />
+        </div>
+        <div id="monthYear"></div>
+        <div id="right" class="btn">
+          <img src="assets/arr-right.svg" class="svg-icon" />
+        </div>
       </div>
-      <div class="orient">
-        <p>Sun</p>
-        <p>Mon</p>
-        <p>Tue</p>
-        <p>Wed</p>
-        <p>Thu</p>
-        <p>Fri</p>
-        <p>Sat</p>
+      <div class="weeks">
+        <div>Sun</div>
+        <div>Mon</div>
+        <div>Tue</div>
+        <div>Wed</div>
+        <div>Thu</div>
+        <div>Fri</div>
+        <div>Sat</div>
       </div>
+      <div class="caldays" id="calDays"></div>
     </div>
+
+    <script src="script.js"></script>
   </body>
 </html>
