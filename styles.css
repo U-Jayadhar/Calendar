@@ -10,3 +10,19 @@
   align-items: center;
   height: 100vh;
 }
+.out-box{
+  border-style: solid;
+  border-radius: 10px;
+  border-color: #f0f8ff;
+  height: 500px;
+  width: 500px;
+  padding: 30px;
+}
+.svg-icon{
+  height: 40px;
+}
+.orient{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
