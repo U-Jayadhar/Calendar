@@ -1,4 +1,5 @@
-const monthYear = document.getElementById("monthYear");
+const monthPlace = document.getElementById("monthPlace");
+const yearPlace = document.getElementById("yearPlace");
 const daysGrid = document.getElementById("calDays");
 const months = [
   "January",
@@ -15,21 +16,20 @@ const months = [
   "December",
 ];
 
-let today = new Date(2025, 2, 5);
+let today = new Date();
 let selDate = new Date();
 
-console.log(new Date(2025, 2, 0).getDay());
-
 function showDate(date) {
-  let year = date.getFullYear();
-  let month = date.getMonth();
-  let firstDay = new Date(year, month, 1).getDay();
-  let lastDay = new Date(year, month + 1, 0).getDate();
+  let yearNow = date.getFullYear();
+  let monthNow = date.getMonth();
+  let firstDay = new Date(yearNow, monthNow, 1).getDay();
+  let lastDay = new Date(yearNow, monthNow + 1, 0).getDate();
 
-  monthYear.textContent = `${months[month]} ${year}`;
+  monthPlace.textContent = `${months[monthNow]}`;
+  yearPlace.textContent = `${yearNow}`;
 
   daysGrid.innerHTML = "";
-  const lastMonthLastDay = new Date(year, month, 0).getDate();
+  const lastMonthLastDay = new Date(yearNow, monthNow, 0).getDate();
   for (let i = firstDay; i > 0; i--) {
     const dayEl = document.createElement("div");
     dayEl.textContent = lastMonthLastDay - i + 1;
@@ -43,15 +43,15 @@ function showDate(date) {
 
     if (
       i === today.getDate() &&
-      month === today.getMonth() &&
-      year === today.getFullYear()
+      monthNow === today.getMonth() &&
+      yearNow === today.getFullYear()
     ) {
       dayEl.classList.add("today");
     }
     daysGrid.appendChild(dayEl);
   }
 
-  const presMonthLastDay = 6 - new Date(year, month + 1, 0).getDay();
+  const presMonthLastDay = 6 - new Date(yearNow, monthNow + 1, 0).getDay();
   for (let i = 1; i <= presMonthLastDay; i++) {
     const dayEl = document.createElement("div");
     dayEl.textContent = i;
@@ -64,12 +64,12 @@ showDate(today);
 
 let prev = document.getElementById("left");
 prev.addEventListener("click", function () {
-  let prevMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1);
-  showDate(prevMonth);
+  selDate.setMonth(selDate.getMonth() - 1);
+  showDate(selDate);
 });
 
 let next = document.getElementById("right");
 next.addEventListener("click", function () {
-  let nexMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1);
-  showDate(nexMonth);
+  selDate.setMonth(selDate.getMonth() + 1);
+  showDate(selDate);
 });
