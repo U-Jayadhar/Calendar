@@ -17,6 +17,7 @@ body {
   box-shadow: 0 0 12px #f0f8ff;
   width: 400px;
   padding: 20px;
+  position: relative;
 }
 
 .arrs {
@@ -65,7 +66,8 @@ body {
 
 .caldays div {
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.3s;
+  transition: click 0.5s;
 }
 
 .caldays div:hover {
@@ -79,4 +81,37 @@ body {
 }
 .caldays .dim {
   color: #717171;
+}
+
+.all-months {
+  background-color: #3c3c3c;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 10px;
+  place-items: center;
+  width: 270px;
+  height: 150px;
+  padding: 10px 0;
+  border-radius: 10px;
+  box-shadow: 0 0 8px #ecc37a;
+  position: absolute;
+  top: 75px;
+  left: 60px;
+  z-index: 0;
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0.3s ease-out, opacity 0.3s ease-out;
+}
+.all-months div {
+  color: #f0f8ff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.all-months div:hover {
+  color: #ecc37a;
+}
+.hide {
+  visibility: hidden;
+  opacity: 0;
 }

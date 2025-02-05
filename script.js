@@ -70,6 +70,29 @@ prev.addEventListener("click", function () {
 
 let next = document.getElementById("right");
 next.addEventListener("click", function () {
+  console.log(selDate.getMonth);
   selDate.setMonth(selDate.getMonth() + 1);
   showDate(selDate);
+});
+
+let allMonths = document.getElementById("allMonths");
+
+for (let each in months) {
+  let eachDiv = document.createElement("div");
+  eachDiv.textContent = months[each].slice(0, 3);
+  eachDiv.addEventListener("click", function () {
+    selDate.setMonth(each);
+    showDate(selDate);
+    allMonths.classList.add("hide");
+  });
+  allMonths.appendChild(eachDiv);
+}
+monthPlace.addEventListener("click", function () {
+  allMonths.classList.toggle("hide");
+});
+
+document.body.addEventListener("click", function (e) {
+  if (!allMonths.contains(e.target) && !monthPlace.contains(e.target)) {
+    allMonths.classList.add("hide");
+  }
 });
