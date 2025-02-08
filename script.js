@@ -17,9 +17,22 @@ const months = [
 ];
 
 let today = new Date();
-let selDate = new Date();
+let dumDate = new Date();
+let selectDate = new Date();
 
-function showDate(date) {
+let todayDate = document.getElementById("todayDate");
+todayDate.textContent = `Today: ${today.getDate()}-${
+  today.getMonth() + 1
+}-${today.getFullYear()}`;
+
+function displayDates(selectDate) {
+  let userDate = document.getElementById("userDate");
+  userDate.textContent = `Selected: ${selectDate.getDate()}-${
+    selectDate.getMonth() + 1
+  }-${selectDate.getFullYear()}`;
+}
+
+function showCalan(date) {
   let yearNow = date.getFullYear();
   let monthNow = date.getMonth();
   let firstDay = new Date(yearNow, monthNow, 1).getDay();
@@ -48,6 +61,23 @@ function showDate(date) {
     ) {
       dayEl.classList.add("today");
     }
+
+    dayEl.addEventListener("click", function () {
+      selectDate = new Date(yearNow, monthNow, i);
+      displayDates(selectDate);
+
+      const allDayElements = document.querySelectorAll(".caldays div.active");
+      allDayElements.forEach((element) => {
+        element.classList.remove("active");
+      });
+      dayEl.classList.add("active");
+
+      const todayEl = document.querySelectorAll(".caldays .today");
+      todayEl.forEach((item) => {
+        item.classList.remove("today");
+        item.classList.add("todaylite");
+      });
+    });
     daysGrid.appendChild(dayEl);
   }
 
@@ -60,19 +90,20 @@ function showDate(date) {
   }
 }
 
-showDate(today);
+showCalan(today);
+console.log(selectDate);
 
 let prev = document.getElementById("left");
 prev.addEventListener("click", function () {
-  selDate.setMonth(selDate.getMonth() - 1);
-  showDate(selDate);
+  dumDate.setMonth(dumDate.getMonth() - 1);
+  showCalan(dumDate);
 });
 
 let next = document.getElementById("right");
 next.addEventListener("click", function () {
-  console.log(selDate.getMonth);
-  selDate.setMonth(selDate.getMonth() + 1);
-  showDate(selDate);
+  console.log(dumDate.getMonth);
+  dumDate.setMonth(dumDate.getMonth() + 1);
+  showCalan(dumDate);
 });
 
 function hideShowBox(place, cbox) {
@@ -93,8 +124,8 @@ for (let each in months) {
   let eachDiv = document.createElement("div");
   eachDiv.textContent = months[each].slice(0, 3);
   eachDiv.addEventListener("click", function () {
-    selDate.setMonth(each);
-    showDate(selDate);
+    dumDate.setMonth(each);
+    showCalan(dumDate);
     allMonths.classList.add("hide");
   });
   if (each == today.getMonth()) {
@@ -115,8 +146,8 @@ function showYears(startYear) {
     let eachDiv = document.createElement("div");
     eachDiv.textContent = i;
     eachDiv.addEventListener("click", function () {
-      selDate.setFullYear(i);
-      showDate(selDate);
+      dumDate.setFullYear(i);
+      showCalan(dumDate);
       listYears.classList.add("hide");
     });
     if (i === today.getFullYear()) {
