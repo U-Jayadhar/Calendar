@@ -17,7 +17,7 @@ const months = [
 ];
 
 let today = new Date();
-let selDate = new Date();
+let dumDate = new Date();
 
 function showDate(date) {
   let yearNow = date.getFullYear();
@@ -64,15 +64,15 @@ showDate(today);
 
 let prev = document.getElementById("left");
 prev.addEventListener("click", function () {
-  selDate.setMonth(selDate.getMonth() - 1);
-  showDate(selDate);
+  dumDate.setMonth(dumDate.getMonth() - 1);
+  showDate(dumDate);
 });
 
 let next = document.getElementById("right");
 next.addEventListener("click", function () {
-  console.log(selDate.getMonth);
-  selDate.setMonth(selDate.getMonth() + 1);
-  showDate(selDate);
+  console.log(dumDate.getMonth);
+  dumDate.setMonth(dumDate.getMonth() + 1);
+  showDate(dumDate);
 });
 
 function hideShowBox(place, cbox) {
@@ -93,8 +93,8 @@ for (let each in months) {
   let eachDiv = document.createElement("div");
   eachDiv.textContent = months[each].slice(0, 3);
   eachDiv.addEventListener("click", function () {
-    selDate.setMonth(each);
-    showDate(selDate);
+    dumDate.setMonth(each);
+    showDate(dumDate);
     allMonths.classList.add("hide");
   });
   if (each == today.getMonth()) {
@@ -115,8 +115,8 @@ function showYears(startYear) {
     let eachDiv = document.createElement("div");
     eachDiv.textContent = i;
     eachDiv.addEventListener("click", function () {
-      selDate.setFullYear(i);
-      showDate(selDate);
+      dumDate.setFullYear(i);
+      showDate(dumDate);
       listYears.classList.add("hide");
     });
     if (i === today.getFullYear()) {
@@ -137,3 +137,18 @@ downBtn.addEventListener("click", function () {
   showYears((startYear += 12));
 });
 hideShowBox(yearPlace, listYears);
+
+let jumpToday = document.getElementById("jumpToday");
+
+jumpToday.textContent = today.getDate();
+if (
+  dumDate.getDate() !== today.getDate() ||
+  dumDate.getMonth() !== today.getMonth() ||
+  dumDate.getFullYear() !== today.getFullYear()
+) {
+  jumpToday.classList.remove("hide");
+}
+jumpToday.addEventListener("click", function () {
+  showDate(today);
+  jumpToday.classList.add("hide");
+});
