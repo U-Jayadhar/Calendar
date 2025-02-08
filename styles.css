@@ -75,7 +75,8 @@ body {
   transition: click 0.5s;
 }
 
-.caldays div:hover {
+.caldays div:hover,
+.caldays div.active {
   background-color: #f0f8ff;
   color: #4564ff;
 }
@@ -83,6 +84,9 @@ body {
 .caldays .today {
   background-color: #4564ff;
   color: #f0f8ff;
+}
+.caldays .todaylite {
+  color: #4564ff;
 }
 .caldays .dim {
   color: #717171;
@@ -184,3 +188,9 @@ body {
   transition: visibility 0.2s ease-in, opacity 0.2s ease-in;
 }
 
+.dates-show {
+  padding: 10px;
+  border: 2px solid #f0f8ff;
+  border-radius: 10px;
+  font-weight: 800;
+}
