@@ -20,16 +20,46 @@ let today = new Date();
 let dumDate = new Date();
 let selectDate = new Date();
 
-let todayDate = document.getElementById("todayDate");
-todayDate.textContent = `Today: ${today.getDate()}-${
-  today.getMonth() + 1
-}-${today.getFullYear()}`;
-
 function displayDates(selectDate) {
+  let todayDate = document.getElementById("todayDate");
+  todayDate.innerHTML =
+    'Today: <span style="color: #f0f8ff;">' +
+    today.getDate() +
+    "-" +
+    (today.getMonth() + 1) +
+    "-" +
+    today.getFullYear() +
+    "</span>";
   let userDate = document.getElementById("userDate");
-  userDate.textContent = `Selected: ${selectDate.getDate()}-${
-    selectDate.getMonth() + 1
-  }-${selectDate.getFullYear()}`;
+  userDate.innerHTML =
+    'Selected: <span style="color: #f0f8ff;">' +
+    selectDate.getDate() +
+    "-" +
+    (selectDate.getMonth() + 1) +
+    "-" +
+    selectDate.getFullYear() +
+    "</span>";
+
+  let jumpToday = document.getElementById("jumpToday");
+  jumpToday.classList.add("hide");
+  jumpToday.textContent = today.getDate();
+
+  if (
+    selectDate.getDate() !== today.getDate() ||
+    selectDate.getMonth() !== today.getMonth() ||
+    selectDate.getFullYear() !== today.getFullYear()
+  ) {
+    jumpToday.classList.remove("hide");
+  } else {
+    jumpToday.classList.add("hide");
+  }
+
+  jumpToday.addEventListener("click", function () {
+    showCalan(today);
+    todayDate.innerHTML = "";
+    userDate.innerHTML = "";
+    jumpToday.classList.add("hide");
+  });
 }
 
 function showCalan(date) {
@@ -61,9 +91,11 @@ function showCalan(date) {
     ) {
       dayEl.classList.add("today");
     }
-
+    let dateShow = document.querySelector(".dates-show");
+    dateShow.style.visibility = "hidden";
     dayEl.addEventListener("click", function () {
       selectDate = new Date(yearNow, monthNow, i);
+      dateShow.style.visibility = "visible";
       displayDates(selectDate);
 
       const allDayElements = document.querySelectorAll(".caldays div.active");
@@ -168,18 +200,3 @@ downBtn.addEventListener("click", function () {
   showYears((startYear += 12));
 });
 hideShowBox(yearPlace, listYears);
-
-let jumpToday = document.getElementById("jumpToday");
-
-jumpToday.textContent = today.getDate();
-if (
-  dumDate.getDate() !== today.getDate() ||
-  dumDate.getMonth() !== today.getMonth() ||
-  dumDate.getFullYear() !== today.getFullYear()
-) {
-  jumpToday.classList.remove("hide");
-}
-jumpToday.addEventListener("click", function () {
-  showCalan(today);
-  jumpToday.classList.add("hide");
-});
