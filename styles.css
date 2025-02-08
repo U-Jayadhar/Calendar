@@ -27,11 +27,10 @@ body {
   padding: 10px;
 }
 
-.svg-icon {
-  height: 40px;
-}
-
 .pointhov {
+  display: flex;
+  flex-direction: column;
+  place-content: center;
   cursor: pointer;
 }
 
@@ -40,7 +39,12 @@ body {
   gap: 10px;
   font-size: 20px;
   font-weight: 800;
-  color: #ecc37a;
+}
+.monthYear #monthPlace {
+  color: #b4f7f7;
+}
+.monthYear #yearPlace {
+  color: #f9ac8e;
 }
 
 .weeks,
@@ -83,35 +87,77 @@ body {
   color: #717171;
 }
 
-.all-months {
+#allMonths {
   background-color: #3c3c3c;
   display: grid;
-  grid-template-columns: auto auto auto;
-  gap: 10px;
+  gap: 25px;
   place-items: center;
-  width: 270px;
-  height: 150px;
-  padding: 10px 0;
+  padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 8px #ecc37a;
   position: absolute;
-  top: 75px;
-  left: 60px;
-  z-index: 0;
   visibility: visible;
   opacity: 1;
-  transition: visibility 0.3s ease-out, opacity 0.3s ease-out;
+  transition: visibility 0.3s ease-in, opacity 0.3s ease-in;
+  grid-template-columns: repeat(4, auto);
+  top: 75px;
+  left: 80px;
+  z-index: 1;
+  box-shadow: 0 0 8px #b4f7f7;
 }
-.all-months div {
+
+#listYears {
+  background-color: #3c3c3c;
+  place-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  display: grid;
+  grid-template: auto / auto auto;
+  gap: 15px;
+  position: absolute;
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0.3s ease-in, opacity 0.3s ease-in;
+  top: 75px;
+  right: 80px;
+  z-index: 2;
+  box-shadow: 0 0 8px #f9ac8e;
+}
+
+#allYears {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 25px;
+}
+
+#listYears .upds {
+  display: flex;
+  justify-content: space-between;
+  /* flex-direction: row;
+  width: 100%; */
+  flex-direction: column;
+  height: 100%;
+}
+
+#allMonths div,
+#allYears div {
   color: #f0f8ff;
   font-weight: 600;
   cursor: pointer;
   transition: color 0.3s;
 }
-.all-months div:hover {
-  color: #ecc37a;
+
+#allMonths div.today,
+#allMonths div:hover {
+  color: #b4f7f7;
 }
-.hide {
+
+#allYears div.today,
+#allYears div:hover {
+  color: #f9ac8e;
+}
+
+#allMonths.hide,
+#listYears.hide {
   visibility: hidden;
   opacity: 0;
 }

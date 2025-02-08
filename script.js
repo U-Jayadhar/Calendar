@@ -75,6 +75,18 @@ next.addEventListener("click", function () {
   showDate(selDate);
 });
 
+function hideShowBox(place, cbox) {
+  place.addEventListener("click", function () {
+    cbox.classList.toggle("hide");
+  });
+
+  document.body.addEventListener("click", function (e) {
+    if (!cbox.contains(e.target) && !place.contains(e.target)) {
+      cbox.classList.add("hide");
+    }
+  });
+}
+
 let allMonths = document.getElementById("allMonths");
 
 for (let each in months) {
@@ -85,14 +97,43 @@ for (let each in months) {
     showDate(selDate);
     allMonths.classList.add("hide");
   });
+  if (each == today.getMonth()) {
+    eachDiv.classList.add("today");
+  }
   allMonths.appendChild(eachDiv);
 }
-monthPlace.addEventListener("click", function () {
-  allMonths.classList.toggle("hide");
+
+hideShowBox(monthPlace, allMonths);
+
+let listYears = document.getElementById("listYears");
+let allYears = document.getElementById("allYears");
+var startYear = today.getFullYear();
+
+function showYears(startYear) {
+  allYears.innerHTML = "";
+  for (let i = startYear; i < startYear + 12; i++) {
+    let eachDiv = document.createElement("div");
+    eachDiv.textContent = i;
+    eachDiv.addEventListener("click", function () {
+      selDate.setFullYear(i);
+      showDate(selDate);
+      listYears.classList.add("hide");
+    });
+    if (i === today.getFullYear()) {
+      eachDiv.classList.add("today");
+    }
+    allYears.appendChild(eachDiv);
+  }
+}
+showYears(startYear);
+
+let upBtn = document.getElementById("up");
+upBtn.addEventListener("click", function () {
+  showYears((startYear -= 12));
 });
 
-document.body.addEventListener("click", function (e) {
-  if (!allMonths.contains(e.target) && !monthPlace.contains(e.target)) {
-    allMonths.classList.add("hide");
-  }
+let downBtn = document.getElementById("down");
+downBtn.addEventListener("click", function () {
+  showYears((startYear += 12));
 });
+hideShowBox(yearPlace, listYears);
