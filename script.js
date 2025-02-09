@@ -24,20 +24,20 @@ function displayDates(selectDate) {
   let todayDate = document.getElementById("todayDate");
   todayDate.innerHTML =
     'Today: <span style="color: #f0f8ff;">' +
-    today.getDate() +
-    "-" +
-    (today.getMonth() + 1) +
-    "-" +
-    today.getFullYear() +
+    today.toLocaleString("en-IN", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }) +
     "</span>";
   let userDate = document.getElementById("userDate");
   userDate.innerHTML =
     'Selected: <span style="color: #f0f8ff;">' +
-    selectDate.getDate() +
-    "-" +
-    (selectDate.getMonth() + 1) +
-    "-" +
-    selectDate.getFullYear() +
+    selectDate.toLocaleString("en-IN", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }) +
     "</span>";
 
   let jumpToday = document.getElementById("jumpToday");
