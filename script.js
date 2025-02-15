@@ -56,6 +56,7 @@ function displayDates(selectDate) {
 
   jumpToday.addEventListener("click", function () {
     showCalan(today);
+    dumDate = new Date();
     todayDate.innerHTML = "";
     userDate.innerHTML = "";
     jumpToday.classList.add("hide");
