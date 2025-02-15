@@ -18,9 +18,32 @@ const months = [
 
 let today = new Date();
 let dumDate = new Date();
-let selectDate = new Date();
 
-function displayDates(selectDate) {
+let jumpToday = document.getElementById("jumpToday");
+jumpToday.classList.add("hide");
+jumpToday.textContent = today.getDate();
+
+jumpToday.addEventListener("click", function () {
+  showCalan(today);
+  dumDate = new Date();
+  todayDate.innerHTML = "";
+  userDate.innerHTML = "";
+  jumpToday.classList.add("hide");
+});
+
+function ballJT(tracker) {
+  if (
+    tracker.getDate() !== today.getDate() ||
+    tracker.getMonth() !== today.getMonth() ||
+    tracker.getFullYear() !== today.getFullYear()
+  ) {
+    jumpToday.classList.remove("hide");
+  } else {
+    jumpToday.classList.add("hide");
+  }
+}
+
+function displayDates(dumDate) {
   let todayDate = document.getElementById("todayDate");
   todayDate.innerHTML =
     'Today: <span style="color: #f0f8ff;">' +
@@ -33,34 +56,13 @@ function displayDates(selectDate) {
   let userDate = document.getElementById("userDate");
   userDate.innerHTML =
     'Selected: <span style="color: #f0f8ff;">' +
-    selectDate.toLocaleString("en-IN", {
+    dumDate.toLocaleString("en-IN", {
       year: "numeric",
       month: "2-digit",
       day: "2-digit",
     }) +
     "</span>";
-
-  let jumpToday = document.getElementById("jumpToday");
-  jumpToday.classList.add("hide");
-  jumpToday.textContent = today.getDate();
-
-  if (
-    selectDate.getDate() !== today.getDate() ||
-    selectDate.getMonth() !== today.getMonth() ||
-    selectDate.getFullYear() !== today.getFullYear()
-  ) {
-    jumpToday.classList.remove("hide");
-  } else {
-    jumpToday.classList.add("hide");
-  }
-
-  jumpToday.addEventListener("click", function () {
-    showCalan(today);
-    dumDate = new Date();
-    todayDate.innerHTML = "";
-    userDate.innerHTML = "";
-    jumpToday.classList.add("hide");
-  });
+  ballJT(dumDate);
 }
 
 function showCalan(date) {
@@ -95,9 +97,9 @@ function showCalan(date) {
     let dateShow = document.querySelector(".dates-show");
     dateShow.style.visibility = "hidden";
     dayEl.addEventListener("click", function () {
-      selectDate = new Date(yearNow, monthNow, i);
+      dumDate = new Date(yearNow, monthNow, i);
       dateShow.style.visibility = "visible";
-      displayDates(selectDate);
+      displayDates(dumDate);
 
       const allDayElements = document.querySelectorAll(".caldays div.active");
       allDayElements.forEach((element) => {
@@ -124,19 +126,19 @@ function showCalan(date) {
 }
 
 showCalan(today);
-console.log(selectDate);
 
 let prev = document.getElementById("left");
 prev.addEventListener("click", function () {
   dumDate.setMonth(dumDate.getMonth() - 1);
   showCalan(dumDate);
+  ballJT(dumDate);
 });
 
 let next = document.getElementById("right");
 next.addEventListener("click", function () {
-  console.log(dumDate.getMonth);
   dumDate.setMonth(dumDate.getMonth() + 1);
   showCalan(dumDate);
+  ballJT(dumDate);
 });
 
 function hideShowBox(place, cbox) {
@@ -159,6 +161,7 @@ for (let each in months) {
   eachDiv.addEventListener("click", function () {
     dumDate.setMonth(each);
     showCalan(dumDate);
+    ballJT(dumDate);
     allMonths.classList.add("hide");
   });
   if (each == today.getMonth()) {
@@ -181,6 +184,7 @@ function showYears(startYear) {
     eachDiv.addEventListener("click", function () {
       dumDate.setFullYear(i);
       showCalan(dumDate);
+      ballJT(dumDate);
       listYears.classList.add("hide");
     });
     if (i === today.getFullYear()) {

@@ -29,9 +29,8 @@ A straightforward and user-friendly calendar interface built using fundamental w
    ```
 3. Open the index.html file in your web browser.
 
-## Preview
-Access the Simple-Calendar live
-[Simple-Calendar Website](https://u-jayadhar.github.io/Simple-Calendar/)
+## Demo
+Access the Simple-Calendar live here 👉 [Simple-Calendar Website](https://u-jayadhar.github.io/Simple-Calendar/)
 
 ## Screenshots
 
