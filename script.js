@@ -141,18 +141,6 @@ next.addEventListener("click", function () {
   ballJT(dumDate);
 });
 
-function hideShowBox(place, cbox) {
-  place.addEventListener("click", function () {
-    cbox.classList.toggle("hide");
-  });
-
-  document.body.addEventListener("click", function (e) {
-    if (!cbox.contains(e.target) && !place.contains(e.target)) {
-      cbox.classList.add("hide");
-    }
-  });
-}
-
 let allMonths = document.getElementById("allMonths");
 
 for (let each in months) {
@@ -170,7 +158,15 @@ for (let each in months) {
   allMonths.appendChild(eachDiv);
 }
 
-hideShowBox(monthPlace, allMonths);
+monthPlace.addEventListener("click", function () {
+  allMonths.classList.toggle("hide");
+});
+
+document.body.addEventListener("click", function (e) {
+  if (!allMonths.contains(e.target) && !monthPlace.contains(e.target)) {
+    allMonths.classList.add("hide");
+  }
+});
 
 let listYears = document.getElementById("listYears");
 let allYears = document.getElementById("allYears");
@@ -193,7 +189,6 @@ function showYears(startYear) {
     allYears.appendChild(eachDiv);
   }
 }
-showYears(startYear);
 
 let upBtn = document.getElementById("up");
 upBtn.addEventListener("click", function () {
@@ -204,4 +199,14 @@ let downBtn = document.getElementById("down");
 downBtn.addEventListener("click", function () {
   showYears((startYear += 12));
 });
-hideShowBox(yearPlace, listYears);
+
+yearPlace.addEventListener("click", function () {
+  listYears.classList.toggle("hide");
+  showYears((startYear = today.getFullYear()-6));
+});
+
+document.body.addEventListener("click", function (e) {
+  if (!listYears.contains(e.target) && !yearPlace.contains(e.target)) {
+    listYears.classList.add("hide");
+  }
+});
